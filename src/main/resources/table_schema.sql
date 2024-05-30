@@ -1,17 +1,16 @@
-CREATE TABLE user (
-    user_id BIGINT NOT NULL AUTO_INCREMENT,
+CREATE TABLE task_user (
+    user_id BIGSERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    PRIMARY KEY (user_id)
+    login_status VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE task (
-    task_id BIGINT NOT NULL AUTO_INCREMENT,
+    task_id BIGSERIAL PRIMARY KEY,
     type VARCHAR(255) NOT NULL,
     claim_status VARCHAR(255) NOT NULL,
-    reward DECIMAL(19,6) NOT NULL,
+    reward NUMERIC(19,6) NOT NULL,
     difficulty VARCHAR(255) NOT NULL,
     status VARCHAR(255) NOT NULL,
     user_id BIGINT NOT NULL,
-    PRIMARY KEY (task_id),
-    FOREIGN KEY (user_id) REFERENCES user (user_id)
+    FOREIGN KEY (user_id) REFERENCES task_user (user_id)
 );
